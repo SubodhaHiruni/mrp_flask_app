@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MRP Forecast & Supply Planner</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        input { margin-bottom: 10px; padding: 5px; width: 200px; }
+        button { padding: 6px 15px; }
+        table, th, td {
+            border: 1px solid rgb(8, 8, 8);
+            border-collapse: collapse;
+            padding: 8px;
+            text-align: center;
+        }
+        th { background-color: #3df063; }
+    </style>
+</head>
+<body>
+    <h2>MRP Forecast & Supply Planner</h2>
+
+    <form method="post">
+        <label>Forecast - Month 1:</label><br>
+        <input type="number" name="month1" required><br>
+
+        <label>Forecast - Month 2:</label><br>
+        <input type="number" name="month2" required><br>
+
+        <label>Forecast - Month 3:</label><br>
+        <input type="number" name="month3" required><br>
+
+        <label>Initial Stock Level:</label><br>
+        <input type="number" name="stock" required><br><br>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if result %}
+        <h3>MRP Calculation </h3>
+        <table>
+            <tr>
+                <th></th>
+                <th>Month 1</th>
+                <th>Month 2</th>
+                <th>Month 3</th>
+            </tr>
+            <tr>
+                <td>Open Stock</td>
+                <td>{{ result.open_stock[0] }}</td>
+                <td>{{ result.open_stock[1] }}</td>
+                <td>{{ result.open_stock[2] }}</td>
+            </tr>
+            <tr>
+                <td>Demand</td>
+                <td>{{ result.demand[0] }}</td>
+                <td>{{ result.demand[1] }}</td>
+                <td>{{ result.demand[2] }}</td>
+            </tr>
+            <tr>
+                <td>Supply</td>
+                <td>{{ result.supply[0] }}</td>
+                <td>{{ result.supply[1] }}</td>
+                <td>{{ result.supply[2] }}</td>
+            </tr>
+            <tr>
+                <td>End Stock</td>
+                <td>{{ result.end_stock[0] }}</td>
+                <td>{{ result.end_stock[1] }}</td>
+                <td>{{ result.end_stock[2] }}</td>
+            </tr>
+        </table>
+    {% endif %}
+</body>
+</html>
