@@ -1,15 +1,14 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/index.py",
-      "use": "@vercel/python"
+  // This configuration applies to all Serverless Functions in the "api" directory
+  "functions": {
+    "api/**": {
+      // Exclude any files or folders under these directories:
+      // - .next
+      // - Any directory matching *.cache (e.g. .cache, build.cache, etc.)
+      // - node_modules
+      // - public
+      // - app
+      "excludeFiles": "{.next,*.cache,node_modules,public,app}/**"
     }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "api/index.py"
-    }
-  ]
+  }
 }
